@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://fpx2a0navcap"]
+
+[ext_resource type="FontFile" path="res://fonts/poco/Poco.tres" id="1_ruohg"]
+[ext_resource type="Script" path="res://UI/score_screen.gd" id="1_tewc5"]
+[ext_resource type="Texture2D" uid="uid://cnp38ljypusnh" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/sprites/gem/gem-1.png" id="2_v664f"]
+[ext_resource type="Texture2D" uid="uid://bdy4j4bnc8ofs" path="res://UI/skull.tga" id="3_cruf1"]
+[ext_resource type="Texture2D" uid="uid://c3jkj6voidi7l" path="res://UI/ReplayButton.tga" id="4_r0j5k"]
+[ext_resource type="Texture2D" uid="uid://corfuntmp6hmj" path="res://UI/RePlayButtonPressed.tga" id="5_6tyms"]
+[ext_resource type="Texture2D" uid="uid://b7ujkdx13rwu6" path="res://UI/RePlayButtonHovered.tga" id="6_ysjul"]
+[ext_resource type="Texture2D" uid="uid://bdv6ti81ut8qq" path="res://MainNodes/MainButton.tga" id="7_i35ca"]
+[ext_resource type="Texture2D" uid="uid://bm7uh36ndkgr3" path="res://MainNodes/MainButtonPressed.tga" id="8_20jie"]
+[ext_resource type="Texture2D" uid="uid://bn3lphgdy5dyw" path="res://MainNodes/MainButtonHovered.tga" id="9_ijord"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnnoq"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 0.717647)
+corner_radius_top_left = 110
+corner_radius_top_right = 110
+corner_radius_bottom_right = 110
+corner_radius_bottom_left = 110
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgons"]
+font = ExtResource("1_ruohg")
+font_size = 67
+
+[node name="ScoreScreen" type="CanvasLayer"]
+script = ExtResource("1_tewc5")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rnnoq")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -287.0
+offset_top = 122.0
+offset_right = 289.0
+offset_bottom = 203.0
+grow_horizontal = 2
+text = "Thanks for playing!"
+label_settings = SubResource("LabelSettings_jgons")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GemCount" type="Node2D" parent="."]
+
+[node name="Gem-1" type="Sprite2D" parent="GemCount"]
+position = Vector2(511, 266)
+scale = Vector2(3, 3)
+texture = ExtResource("2_v664f")
+
+[node name="GemNb" type="Label" parent="GemCount"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 532.0
+offset_top = 206.0
+offset_right = 612.0
+offset_bottom = 287.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 40)
+text = "00"
+label_settings = SubResource("LabelSettings_jgons")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathCount" type="Node2D" parent="."]
+
+[node name="Skull" type="Sprite2D" parent="DeathCount"]
+position = Vector2(512, 332)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_cruf1")
+
+[node name="DeathNb" type="Label" parent="DeathCount"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 532.0
+offset_top = 275.0
+offset_right = 612.0
+offset_bottom = 356.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 40)
+text = "00"
+label_settings = SubResource("LabelSettings_jgons")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Replay" type="TextureButton" parent="."]
+offset_left = 200.0
+offset_top = 304.0
+offset_right = 560.0
+offset_bottom = 664.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("4_r0j5k")
+texture_pressed = ExtResource("5_6tyms")
+texture_hover = ExtResource("6_ysjul")
+
+[node name="Main" type="TextureButton" parent="."]
+offset_left = 664.0
+offset_top = 304.0
+offset_right = 1024.0
+offset_bottom = 664.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("7_i35ca")
+texture_pressed = ExtResource("8_20jie")
+texture_hover = ExtResource("9_ijord")
+
+[connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="Main" to="." method="_on_main_pressed"]

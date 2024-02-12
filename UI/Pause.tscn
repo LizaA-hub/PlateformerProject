@@ -1,0 +1,166 @@
+[gd_scene load_steps=16 format=3 uid="uid://bjaaajguencib"]
+
+[ext_resource type="Texture2D" uid="uid://4k6dbthxnaom" path="res://UI/pauseButton.tga" id="1_qbje5"]
+[ext_resource type="Texture2D" uid="uid://ce5t0rtrra5dd" path="res://UI/pauseButtonClicked.tga" id="2_q68fk"]
+[ext_resource type="Texture2D" uid="uid://4rf6ds2sehdy" path="res://UI/pauseButtonHovered.tga" id="3_mkm7s"]
+[ext_resource type="Texture2D" uid="uid://bdv6ti81ut8qq" path="res://MainNodes/MainButton.tga" id="4_ko1tk"]
+[ext_resource type="Texture2D" uid="uid://comubhtceogwu" path="res://UI/InputInfos.tga" id="4_w6wp7"]
+[ext_resource type="Texture2D" uid="uid://bm7uh36ndkgr3" path="res://MainNodes/MainButtonPressed.tga" id="5_wnk71"]
+[ext_resource type="Texture2D" uid="uid://bn3lphgdy5dyw" path="res://MainNodes/MainButtonHovered.tga" id="6_plrik"]
+[ext_resource type="Texture2D" uid="uid://8frra17t4vmg" path="res://UI/ResumeBtn.tga" id="7_t4u6x"]
+[ext_resource type="Texture2D" uid="uid://b7p2srg5l307x" path="res://UI/ResumeBtnClicked.tga" id="8_8xiqb"]
+[ext_resource type="Texture2D" uid="uid://bjyxybmtjinql" path="res://UI/ResumeBtnHovered.tga" id="9_eo085"]
+
+[sub_resource type="GDScript" id="GDScript_q6xyl"]
+script/source = "extends TextureButton
+
+var IsOpen = false
+
+
+func _ready():
+	$Panel.set_scale(Vector2(0,0))
+
+
+func _on_pressed():
+	if IsOpen:
+		get_node(\"AnimationPlayer\").play(\"Transition\")
+	else:
+		texture_normal = load(\"res://UI/pauseButtonClicked.tga\")
+		get_tree().paused = true
+		get_node(\"AnimationPlayer\").play(\"RESET\")
+		IsOpen =true
+		
+
+
+
+
+func _on_main_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file(\"res://MainNodes/main.tscn\")
+
+
+func _on_resume_pressed():
+	_on_pressed()
+	
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == \"Transition\":
+		get_tree().paused = false
+		IsOpen = false
+		texture_normal = load(\"res://UI/pauseButton.tga\")
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syqrs"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.490196)
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+
+[sub_resource type="Animation" id="Animation_7a8rm"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1xpy8"]
+resource_name = "Transition"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5fsb"]
+_data = {
+"RESET": SubResource("Animation_7a8rm"),
+"Transition": SubResource("Animation_1xpy8")
+}
+
+[node name="SettingsButton" type="TextureButton"]
+offset_left = 1072.0
+offset_top = 48.0
+offset_right = 1872.0
+offset_bottom = 848.0
+scale = Vector2(0.07, 0.07)
+texture_normal = ExtResource("1_qbje5")
+texture_pressed = ExtResource("2_q68fk")
+texture_hover = ExtResource("3_mkm7s")
+script = SubResource("GDScript_q6xyl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 2
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -19.1429
+anchor_top = -0.857143
+anchor_right = -6.07021
+anchor_bottom = 8.21536
+offset_right = 5999.88
+offset_bottom = 2000.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(8229, 4629)
+theme_override_styles/panel = SubResource("StyleBoxFlat_syqrs")
+
+[node name="Main" type="TextureButton" parent="Panel"]
+process_mode = 2
+layout_mode = 0
+offset_left = 4800.0
+offset_top = 3314.29
+offset_right = 5160.0
+offset_bottom = 3674.29
+scale = Vector2(7, 7)
+texture_normal = ExtResource("4_ko1tk")
+texture_pressed = ExtResource("5_wnk71")
+texture_hover = ExtResource("6_plrik")
+
+[node name="Resume" type="TextureButton" parent="Panel"]
+process_mode = 2
+layout_mode = 0
+offset_left = 9142.86
+offset_top = 3314.29
+offset_right = 9502.86
+offset_bottom = 3674.29
+scale = Vector2(7, 7)
+texture_normal = ExtResource("7_t4u6x")
+texture_pressed = ExtResource("8_8xiqb")
+texture_hover = ExtResource("9_eo085")
+
+[node name="InputInfos" type="Sprite2D" parent="Panel"]
+process_mode = 2
+position = Vector2(8914.32, 4914.29)
+scale = Vector2(10, 10)
+texture = ExtResource("4_w6wp7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 2
+libraries = {
+"": SubResource("AnimationLibrary_u5fsb")
+}
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="Panel/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Panel/Resume" to="." method="_on_resume_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
