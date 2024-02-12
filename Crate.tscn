@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2eua0uucimqb"]
+
+[ext_resource type="Texture2D" uid="uid://blc0h07epcwv" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Props/crate.png" id="1_4accy"]
+[ext_resource type="Script" path="res://Crate.gd" id="1_7ksga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0r0a"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4o3h"]
+size = Vector2(14, 14)
+
+[node name="Crate" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_7ksga")
+
+[node name="Crate" type="Sprite2D" parent="."]
+texture = ExtResource("1_4accy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r0r0a")
+
+[node name="BumpArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BumpArea"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_y4o3h")
+
+[connection signal="body_entered" from="BumpArea" to="." method="_on_bump_area_body_entered"]

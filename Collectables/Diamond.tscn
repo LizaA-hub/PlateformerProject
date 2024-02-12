@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://vtdikshcjfmr"]
+
+[ext_resource type="Texture2D" uid="uid://defb51yu16rev" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/spritesheets/gem.png" id="1_iwxr2"]
+[ext_resource type="Script" path="res://Collectables/Diamond.gd" id="1_x51uk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nidog"]
+atlas = ExtResource("1_iwxr2")
+region = Rect2(0, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k7fa"]
+atlas = ExtResource("1_iwxr2")
+region = Rect2(15, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbde2"]
+atlas = ExtResource("1_iwxr2")
+region = Rect2(30, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6401"]
+atlas = ExtResource("1_iwxr2")
+region = Rect2(45, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf1sr"]
+atlas = ExtResource("1_iwxr2")
+region = Rect2(60, 0, 15, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rusrx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nidog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k7fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbde2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6401")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf1sr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_amgqe"]
+radius = 1.63682
+
+[node name="Gem" type="Area2D"]
+position = Vector2(463, 225)
+script = ExtResource("1_x51uk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rusrx")
+autoplay = "default"
+frame_progress = 0.382588
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(4.32, 4.32)
+shape = SubResource("CircleShape2D_amgqe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

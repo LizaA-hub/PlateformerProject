@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://oovdp61l3mwx"]
+
+[ext_resource type="Script" path="res://hide_door.gd" id="1_i8mqa"]
+[ext_resource type="Texture2D" uid="uid://cr8uxnghllahi" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Props/door-opened.png" id="2_kvnx5"]
+[ext_resource type="Texture2D" uid="uid://bg2fmbf48dxs5" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Props/face-block.png" id="3_fj5ou"]
+[ext_resource type="Texture2D" uid="uid://bytyc513n6l0y" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Props/crank-up.png" id="4_5da24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x531"]
+size = Vector2(20, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyjqk"]
+
+[node name="HideDoor" type="Node2D"]
+position = Vector2(142, 145)
+script = ExtResource("1_i8mqa")
+
+[node name="Door" type="Sprite2D" parent="."]
+texture = ExtResource("2_kvnx5")
+
+[node name="DoorArea" type="Area2D" parent="Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/DoorArea"]
+shape = SubResource("RectangleShape2D_2x531")
+
+[node name="Block" type="Sprite2D" parent="."]
+texture = ExtResource("3_fj5ou")
+
+[node name="Cranck" type="Sprite2D" parent="."]
+position = Vector2(45, 8)
+texture = ExtResource("4_5da24")
+
+[node name="CranckArea" type="Area2D" parent="Cranck"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cranck/CranckArea"]
+position = Vector2(3, -1)
+shape = SubResource("RectangleShape2D_oyjqk")
+
+[connection signal="body_entered" from="Door/DoorArea" to="." method="_on_door_area_body_entered"]
+[connection signal="body_exited" from="Door/DoorArea" to="." method="_on_door_area_body_exited"]
+[connection signal="body_entered" from="Cranck/CranckArea" to="." method="_on_cranck_area_body_entered"]
+[connection signal="body_exited" from="Cranck/CranckArea" to="." method="_on_cranck_area_body_exited"]
