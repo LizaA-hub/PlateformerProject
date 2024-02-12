@@ -36,6 +36,7 @@ func _on_pressed():
 
 func _on_main_pressed():
 	get_tree().paused = false
+	Game.Replay()
 	get_tree().change_scene_to_file(\"res://MainNodes/main.tscn\")
 
 

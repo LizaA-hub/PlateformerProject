@@ -63,6 +63,7 @@ func ShowBtns():
 
 
 func _on_main_pressed():
+	Game.Replay()
 	get_tree().change_scene_to_file("res://MainNodes/main.tscn")
 
 

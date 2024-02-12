@@ -13,7 +13,9 @@ signal death
 signal shake(T:float)
 
 #func _ready():
-	#Utils.Loaded.connect(DisplayValue)
+	#playerHP = 10
+	#Gold = 0
+	#Death=0
 
 func Heal():
 	if playerHP < 10:

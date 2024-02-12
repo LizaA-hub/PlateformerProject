@@ -84,11 +84,11 @@ texture = ExtResource("1_bsc8p")
 16:1/0 = 0
 16:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 16:1/0/physics_layer_0/angular_velocity = 0.0
-16:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0.125, -8, 8)
 17:1/0 = 0
 17:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:1/0/physics_layer_0/angular_velocity = 0.0
-17:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.375, 8, 8, -8, 8)
 19:1/0 = 0
 19:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:1/0/physics_layer_0/angular_velocity = 0.0
@@ -117,7 +117,6 @@ texture = ExtResource("1_bsc8p")
 17:2/0 = 0
 17:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:2/0/physics_layer_0/angular_velocity = 0.0
-17:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:2/0 = 0
 19:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:2/0/physics_layer_0/angular_velocity = 0.0
@@ -1400,7 +1399,7 @@ polygon = PackedVector2Array(1208, 260, 1376, 344, 1208, 336)
 
 [node name="Slope2" type="CollisionPolygon2D" parent="MapCollisions"]
 position = Vector2(-840, 866)
-polygon = PackedVector2Array(1339, 328, 1344, 275, 1214, 339)
+polygon = PackedVector2Array(1339, 328, 1344, 274, 1214, 339)
 
 [node name="Big-crate" type="Sprite2D" parent="MapCollisions"]
 position = Vector2(2603, 324)
